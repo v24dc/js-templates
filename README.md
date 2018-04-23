@@ -3,6 +3,8 @@ JS project templates.
 
 webpack-4-simple
 ------
+Basic custom webpack4 config.
+
 + WebPack 4
 + Babel
 + Sass with hot reload
