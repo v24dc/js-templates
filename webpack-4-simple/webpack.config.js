@@ -5,55 +5,61 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-module.exports = {
-  entry: { main: './src/index.js' },
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].[hash].js'
-  },
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader'
+
+module.exports = (evn, options) => {
+  
+  console.log(`This is the Webpack 4 'mode': ${options.mode}`);
+
+  return {
+    entry: { main: './src/index.js' },
+    output: {
+      path: path.resolve(__dirname, 'dist'),
+      filename: '[name].[hash].js'
+    },
+    module: {
+      rules: [
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          use: {
+            loader: 'babel-loader'
+          }
+        },
+        {
+          test: /\.scss$/,
+          use: [
+            'css-hot-loader',
+            MiniCssExtractPlugin.loader,
+            'css-loader',
+            'postcss-loader',
+            'sass-loader'
+          ]
         }
-      },
-      {
-        test: /\.scss$/,
-        use: [
-          'css-hot-loader',
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'postcss-loader',
-          'sass-loader'
-        ]
-      }
+      ]
+    },
+
+    devServer: {
+      contentBase: './dist',
+      hot: true,
+      inline: true,
+      watchContentBase: true,
+      historyApiFallback: true
+    },
+    devtool: 'inline-source-map',
+
+    plugins: [
+      new MiniCssExtractPlugin({
+        filename: `styles/[name].css`
+      }),
+      new HtmlWebpackPlugin({
+        inject: false,
+        hash: true,
+        template: './src/index.html',
+        filename: 'index.html'
+      }),
+      new WebpackMd5Hash(),
+      // new webpack.HotModuleReplacementPlugin({ multiStep: true })
+      new webpack.HotModuleReplacementPlugin()
     ]
-  },
-
-  devServer: {
-    contentBase: './dist',
-    hot: true,
-    inline: true,
-    watchContentBase: true,
-    historyApiFallback: true
-  },
-  devtool: 'inline-source-map',
-
-  plugins: [
-    new MiniCssExtractPlugin({
-      filename: `styles/[name].css`
-    }),
-    new HtmlWebpackPlugin({
-      inject: false,
-      hash: true,
-      template: './src/index.html',
-      filename: 'index.html'
-    }),
-    new WebpackMd5Hash(),
-    // new webpack.HotModuleReplacementPlugin({ multiStep: true })
-    new webpack.HotModuleReplacementPlugin()
-  ]
+  };
 };
