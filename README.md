@@ -13,6 +13,12 @@ Basic custom webpack4 config.
 + Hot reload for js files
 + Dev and prod configs
 
+
+nginx-config
+------
+Example nginx 1.10 config to deal with CORS if you use api backend.
+Also allows to proxy /sockjs-node webpack websockets to node.
+
 Howto use:
 ------
 
