@@ -1,15 +1,15 @@
 // webpack v4 config
 const path = require('path');
 const webpack = require('webpack');
+const merge = require('webpack-merge');
 // const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const devserverConfig = require('./webpack/devserver');
+const rules = require('./webpack/rules');
 
-module.exports = (evn, options) => {
-  
-  console.log(`This is the Webpack 4 'mode': ${options.mode}`);
-
+const commonConfig = prod => {
   return {
     entry: { main: './src/index.js' },
     output: {
@@ -17,35 +17,26 @@ module.exports = (evn, options) => {
       filename: '[name].[hash].js'
     },
     module: {
-      rules: [
-        {
-          test: /\.js$/,
-          exclude: /node_modules/,
-          use: {
-            loader: 'babel-loader'
-          }
-        },
-        {
-          test: /\.scss$/,
-          use: [
-            'css-hot-loader',
-            MiniCssExtractPlugin.loader,
-            'css-loader',
-            'postcss-loader',
-            'sass-loader'
-          ]
-        }
-      ]
+      // rules: [
+      //   {
+      //     test: /\.js$/,
+      //     exclude: /node_modules/,
+      //     use: {
+      //       loader: 'babel-loader'
+      //     }
+      //   },
+      //   {
+      //     test: /\.scss$/,
+      //     use: [
+      //       'css-hot-loader',
+      //       MiniCssExtractPlugin.loader,
+      //       'css-loader',
+      //       'postcss-loader',
+      //       'sass-loader'
+      //     ]
+      //   }
+      // ]
     },
-
-    devServer: {
-      contentBase: './dist',
-      hot: true,
-      inline: true,
-      watchContentBase: true,
-      historyApiFallback: true
-    },
-    devtool: 'inline-source-map',
 
     plugins: [
       new MiniCssExtractPlugin({
@@ -62,4 +53,19 @@ module.exports = (evn, options) => {
       new webpack.HotModuleReplacementPlugin()
     ]
   };
+};
+
+module.exports = (evn, options) => {
+  console.log(`This is the Webpack 4 'mode': ${options.mode}`);
+
+  const prod = options.mode === 'production';
+  
+  const common = commonConfig(prod);
+  common.module.rules = rules(prod);
+
+  if (prod) {
+    return common;
+  } else {
+    return merge(commonConfig(prod), devserverConfig);
+  }
 };
