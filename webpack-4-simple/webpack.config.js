@@ -1,5 +1,6 @@
 // webpack v4 config
 const path = require('path');
+const webpack = require('webpack');
 // const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
@@ -8,7 +9,7 @@ module.exports = {
   entry: { main: './src/index.js' },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].[chunkhash].js'
+    filename: '[name].[hash].js'
   },
   module: {
     rules: [
@@ -19,10 +20,20 @@ module.exports = {
           loader: 'babel-loader'
         }
       },
+      // {
+      //   test: /\.scss$/,
+      //   use: [
+      //     'style-loader',
+      //     MiniCssExtractPlugin.loader,
+      //     'css-loader',
+      //     'postcss-loader',
+      //     'sass-loader'
+      //   ]
+      // }
       {
         test: /\.scss$/,
         use: [
-          'style-loader',
+          'css-hot-loader',
           MiniCssExtractPlugin.loader,
           'css-loader',
           'postcss-loader',
@@ -31,12 +42,25 @@ module.exports = {
       }
     ]
   },
+
+  devServer: {
+    contentBase: './dist',
+    hot: true,
+    inline: true,
+    watchContentBase: true,
+    historyApiFallback: true
+  },
+  devtool: 'inline-source-map',
+
   plugins: [
     // new ExtractTextPlugin(
     //   {filename: 'style.[hash].css', disable: false, allChunks: true }
     // ),
+    // new MiniCssExtractPlugin({
+    //   filename: 'style.[contenthash].css'
+    // }),
     new MiniCssExtractPlugin({
-      filename: 'style.[contenthash].css'
+      filename: `styles/[name].css`
     }),
     new HtmlWebpackPlugin({
       inject: false,
@@ -44,6 +68,8 @@ module.exports = {
       template: './src/index.html',
       filename: 'index.html'
     }),
-    new WebpackMd5Hash()
+    new WebpackMd5Hash(),
+    // new webpack.HotModuleReplacementPlugin({ multiStep: true })
+    new webpack.HotModuleReplacementPlugin()
   ]
 };
