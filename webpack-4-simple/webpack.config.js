@@ -20,16 +20,6 @@ module.exports = {
           loader: 'babel-loader'
         }
       },
-      // {
-      //   test: /\.scss$/,
-      //   use: [
-      //     'style-loader',
-      //     MiniCssExtractPlugin.loader,
-      //     'css-loader',
-      //     'postcss-loader',
-      //     'sass-loader'
-      //   ]
-      // }
       {
         test: /\.scss$/,
         use: [
@@ -53,12 +43,6 @@ module.exports = {
   devtool: 'inline-source-map',
 
   plugins: [
-    // new ExtractTextPlugin(
-    //   {filename: 'style.[hash].css', disable: false, allChunks: true }
-    // ),
-    // new MiniCssExtractPlugin({
-    //   filename: 'style.[contenthash].css'
-    // }),
     new MiniCssExtractPlugin({
       filename: `styles/[name].css`
     }),
