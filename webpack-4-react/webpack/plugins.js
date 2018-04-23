@@ -8,13 +8,13 @@ module.exports = prod => {
   // common plugins
   const plugins = [
     new MiniCssExtractPlugin({
-      filename: `styles/[name].css`
+      filename: 'styles/[name].css'
     }),
 
     new HtmlWebpackPlugin({
       inject: false,
       hash: true,
-      template: './src/index.html',
+      template: './src/pages/index.html',
       filename: 'index.html'
     }),
 

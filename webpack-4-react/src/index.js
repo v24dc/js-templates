@@ -1,5 +1,5 @@
-import "./style.scss";
-console.log("Hello! Test!");
+import './styles/main.scss';
+console.log('Hello! Test!');
 
 if (module.hot) {
   console.log(module);
