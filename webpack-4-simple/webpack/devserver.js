@@ -1,3 +1,4 @@
+// dev server config
 module.exports = {
   devServer: {
     contentBase: './dist',

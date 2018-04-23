@@ -1,6 +1,7 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = prod => {
+  // common rules
   const rules = [
     {
       test: /\.js$/,
@@ -12,6 +13,7 @@ module.exports = prod => {
   ];
 
   if (prod) {
+    // production only rules
     rules.push({
       test: /\.scss$/,
       use: [
@@ -22,6 +24,7 @@ module.exports = prod => {
       ]
     });
   } else {
+    // development only rules
     rules.push({
       test: /\.scss$/,
       use: [
