@@ -11,7 +11,7 @@ const plugins = require('./webpack/plugins');
 const commonConfig = () => {
   return {
     module: {},
-    entry: { main: './src/index.js' },
+    entry: { main: './src/pages/index.js' },
     output: {
       path: path.resolve(__dirname, 'dist'),
       filename: '[name].[hash].js'
