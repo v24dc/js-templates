@@ -19,11 +19,24 @@ const commonConfig = prod => {
 
 module.exports = (evn, options) => {
   console.log(`This is the Webpack 4 'mode': ${options.mode}`);
-  
+
   const prod = options.mode === 'production';
   const common = commonConfig(prod);
   common.module.rules = rules(prod);
   common.plugins = plugins(prod);
+
+  // if (prod) {
+  //   // common.optimization = {
+  //   //   minimizer: [
+  //   //     new UglifyJsPlugin({
+  //   //       cache: true,
+  //   //       parallel: true,
+  //   //       sourceMap: true // set to true if you want JS source maps
+  //   //     }),
+  //   //     new OptimizeCSSAssetsPlugin({})
+  //   //   ]
+  //   // };
+  // }
 
   if (prod) {
     return common;

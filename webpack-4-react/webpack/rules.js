@@ -9,6 +9,15 @@ module.exports = prod => {
       use: {
         loader: 'babel-loader'
       }
+    },
+    {
+      test: /\.css$/,
+      use: [
+        'css-hot-loader',
+        MiniCssExtractPlugin.loader,
+        'css-loader',
+        'postcss-loader'
+      ]
     }
   ];
 
