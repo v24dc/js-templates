@@ -13,6 +13,14 @@ Basic custom webpack4 config.
 + Hot reload for js files
 + Dev and prod configs
 
+webpack-4-react
+------
+webpack-4-simple with:
+
++ React
++ Normalize.css
++ Prod build css and js minification.
+
 
 nginx-config
 ------
