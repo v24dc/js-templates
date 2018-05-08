@@ -1,4 +1,6 @@
-import "./style.scss";
+import '../styles/main.scss';
+import 'normalize.css';
+
 console.log("Hello! Test!");
 
 if (module.hot) {

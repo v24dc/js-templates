@@ -12,14 +12,14 @@ Basic custom webpack4 config.
 + autoprefixer
 + Hot reload for js files
 + Dev and prod configs
++ Normalize.css
++ Prod build css and js minification.
++ Eslint
 
 webpack-4-react
 ------
 webpack-4-simple with:
-
 + React
-+ Normalize.css
-+ Prod build css and js minification.
 
 
 nginx-config
