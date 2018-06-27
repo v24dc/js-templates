@@ -1,0 +1,8 @@
+{
+  "name": "webpack-4-ts-react",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "v24dc",
+  "license": "MIT",
+  "private": true
+}
