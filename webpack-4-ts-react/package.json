@@ -4,5 +4,16 @@
   "main": "index.js",
   "author": "v24dc",
   "license": "MIT",
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "@types/react": "^16.4.2",
+    "@types/react-dom": "^16.0.6",
+    "awesome-typescript-loader": "^5.2.0",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "source-map-loader": "^0.2.3",
+    "typescript": "^2.9.2",
+    "webpack": "^4.12.2",
+    "webpack-cli": "^3.0.8"
+  }
 }
