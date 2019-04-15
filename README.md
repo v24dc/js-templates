@@ -1,5 +1,6 @@
 JS project templates.
 ------
+Latest deps upgrade: **04-15-2019**
 
 webpack-4-simple
 ------
@@ -21,11 +22,14 @@ webpack-4-react
 webpack-4-simple with:
 + React
 
+webpack-4-ts-react
+------
+Same as webpack-4-react but with Typescript instead of Javascript (awesome-typescript-loader).
 
 nginx-config
 ------
 Example nginx 1.10 config to deal with CORS if you use api backend.
-Also allows to proxy /sockjs-node webpack websockets to node.
+Also allows to proxy /sockjs-node webpack HMR websockets to node.
 
 Howto use:
 ------
