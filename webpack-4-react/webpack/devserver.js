@@ -5,7 +5,8 @@ module.exports = {
     hot: true,
     inline: true,
     watchContentBase: true,
-    historyApiFallback: true
+    historyApiFallback: true,
+    disableHostCheck: true
   },
   devtool: 'inline-source-map'
 };
