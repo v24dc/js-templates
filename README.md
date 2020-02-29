@@ -1,6 +1,5 @@
 JS project templates.
 ------
-Latest deps upgrade: **09-12-2019**
 
 webpack-4-simple
 ------
